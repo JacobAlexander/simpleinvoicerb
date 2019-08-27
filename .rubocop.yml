@@ -1,0 +1,16 @@
+inherit_gem:
+  relaxed-rubocop: .rubocop.yml
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'db/schema.rb'
+    - 'config/initializers/simple_form_bootstrap.rb'
+Lint/UselessAssignment:
+  Exclude:
+    - 'spec/**/*.rb'
+Style/FormatStringToken:
+  Exclude:
+    - '**/*'
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'test/**/*'

@@ -1,0 +1,27 @@
+- present(invoice) do |i|
+  %h1 Checkout
+  %hr/
+  %table.table
+    %tr
+      %th{:scope => "col"} Name
+      %th{:scope => "col"} Unit price
+      %th{:scope => "col"} Count
+      %th{:scope => "col"} Sum
+    - i.products_summary.each do |product|
+      - present(product) do |p|
+        %tr
+          %td= p.name
+          %td= p.price
+          %td= p.qty
+          %td= p.price
+    %tr
+      %td
+      %td
+      %td
+        %strong Total:
+      %td= i.total_price
+%hr/
+.float-left
+  = link_to("Back", back_url(or: root_path), class: 'back-link')
+.float-right
+  = link_to("Close invoice", close_invoice_checkout_path, class: 'back-link text-right')

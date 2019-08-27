@@ -1,0 +1,37 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title SimpleInvoiceRB
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    = render_flash
+    %nav.navbar.navbar-expand-md.navbar-light.fixed-top{style: "background-color: #e3f2fd;"}
+      %a.navbar-brand{:href => "/"} SimpleInvoiceRB
+      %button.navbar-toggler{"aria-controls" => "navbarsExampleDefault", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarsExampleDefault", "data-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
+      #navbarsExampleDefault.collapse.navbar-collapse
+        %ul.navbar-nav.mr-auto
+          %li.nav-item.active
+            = link_to root_path, class: 'nav-link' do
+              Home
+              %span.sr-only (current)
+          %li.nav-item.dropdown
+            %a#dropdown01.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#"} Products
+            .dropdown-menu{"aria-labelledby" => "dropdown01"}
+              = link_to 'All (list)', products_path, class: 'dropdown-item'
+              = link_to 'Add new', new_product_path, class: 'dropdown-item'
+          %li.nav-item.dropdown
+            %a#dropdown01.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#"} Invoices
+            .dropdown-menu{"aria-labelledby" => "dropdown01"}
+              = link_to 'All (list)', invoices_path, class: 'dropdown-item'
+        %ul.navbar-nav.ml-auto.mr-3
+          %li
+            = link_to checkout_path, class: 'bar-total-price' do
+              = present(current_invoice).total_price_text
+    %main.container{:role => "main"}
+      .container{class: "#{action_class}"}
+        = yield

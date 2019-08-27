@@ -1,0 +1,6 @@
+if ($('.box-invoices-show, .box-checkouts-show').length > 0) {
+  Turbolinks.clearCache();
+  Turbolinks.visit(location.toString());
+} else {
+  $('.bar-total-price').text('<%= present(invoice).total_price_text %>')
+}

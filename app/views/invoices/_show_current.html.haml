@@ -1,0 +1,29 @@
+%table.table
+  %tr
+    %th{:scope => "col"} Name
+    %th{:scope => "col"} Unit price
+    %th{:scope => "col"} Count
+    %th{:scope => "col"} Sum
+    %th{:scope => "col"}
+    %th{:scope => "col"}
+  - i.products_summary.each do |product|
+    - present(product) do |p|
+      %tr
+        %td= p.name
+        %td= p.price
+        %td= p.qty
+        %td= p.price
+        %td= link_to("+", add_product_checkout_path(p), remote: true)
+        %td= link_to("-", remove_product_checkout_path(p), remote: true)
+  %tr
+    %td
+    %td
+    %td
+      %strong Total:
+    %td= i.total_price
+    %td
+    %td
+
+.col-12
+  .ml-auto
+    = render partial: 'add_to_invoice_form', locals: { i: i }

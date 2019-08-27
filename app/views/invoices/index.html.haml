@@ -1,0 +1,19 @@
+%h1.d-sm-inline-block Invoices
+
+%table.table
+  %tr
+    %th{:scope => "col"} #
+    %th{:scope => "col"} Created at
+    %th{:scope => "col"} Number
+    %th{:scope => "col"} Total
+    %th{:scope => "col"} Closed
+    %th{:scope => "col"}
+  - invoices.each do |invoice|
+    - present(invoice) do |i|
+      %tr
+        %th{:scope => "row"}=i.id
+        %td= i.created_at
+        %td= link_to(i.number, invoice_path(i))
+        %td= i.total_price
+        %td= i.closed?
+        %td= link_to("Show", invoice_path(i))

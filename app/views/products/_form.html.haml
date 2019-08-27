@@ -1,0 +1,10 @@
+%h1= headline
+%hr/
+.col-md-6
+  = simple_form_for product do |f|
+    = f.input :name, required: true
+    = f.input :code, required: true, input_html: { class: 'uppercase' }
+    = f.input :price, as: :decimal, required: true, wrapper: :input_group, append: t('number.currency.format.unit'), input_html: { type: 'number', step: '0.01', min: '0' }
+    = f.button :submit, class: 'btn-primary'
+    or
+    = link_to("Back", back_url(or: products_path), class: 'back-link')

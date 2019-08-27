@@ -1,0 +1,17 @@
+- present(invoice) do |i|
+  - if i.closed?
+    %span.text-danger Invoice closed
+    %h6
+      %strong Number:
+      = i.number
+  %h1 Invoice summary
+  %hr/
+  - if current_invoice?
+    = render partial: 'show_current', locals: { i: i }
+  - else
+    = render partial: 'show_default', locals: { i: i }
+%hr/
+= link_to("Back", back_url(or: invoices_path), class: 'back-link')
+- if current_invoice?
+  |
+  = link_to("Checkout", checkout_path, class: 'back-link text-right')

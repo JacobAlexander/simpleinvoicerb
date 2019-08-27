@@ -1,0 +1,20 @@
+- present(product) do |p|
+  %h1= "Product: #{p.name}"
+  %hr/
+  %table
+    %tr
+      %td
+        %b Name:
+        = p.name
+    %tr
+      %td
+        %b Code:
+        = p.code
+    %tr
+      %td
+        %b Price:
+        = p.price
+%hr/
+= link_to("Edit", edit_product_path(product))
+|
+= link_to("Back", back_url(or: products_path), class: 'back-link')
