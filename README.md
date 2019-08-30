@@ -1,5 +1,7 @@
 # README
 
+LiveDemo: https://thesimpleinvoicerb.herokuapp.com/
+
 HOWTO RUN:
 * Make sure you have node and ruby 2.6.3 with bundler
 * run command: bundle install
